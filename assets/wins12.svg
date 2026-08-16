@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="100%" height="100%">
+  <!-- Cuadrado superior izquierdo (Fucsia intenso) -->
+  <rect x="50" y="50" width="180" height="180" rx="30" fill="#ff00a0" />
+  
+  <!-- Cuadrado superior derecho (Rosa chicle claro) -->
+  <rect x="260" y="50" width="180" height="180" rx="30" fill="#ff69b4" />
+  
+  <!-- Cuadrado inferior izquierdo (Magenta oscuro / Fucsia profundo) -->
+  <rect x="50" y="260" width="180" height="180" rx="30" fill="#d80073" />
+  
+  <!-- Cuadrado inferior derecho (Rosa medio) -->
+  <rect x="260" y="260" width="180" height="180" rx="30" fill="#ff4da6" />
+</svg>

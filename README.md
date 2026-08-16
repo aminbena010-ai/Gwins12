@@ -1,6 +1,17 @@
 <div align="center">
+  <table>
+    <tr>
+      <td align="center" style="border: none; padding-right: 15px;">
+        <img src="assets/wins12.svg" alt="Gwins12 Logo" width="100" />
+      </td>
+      <td align="left" style="border: none;">
+        <h1 style="margin: 0; border-bottom: none;">Gwins12</h1>
+      </td>
+    </tr>
+  </table>
 
-# ⚡ Gwins12
+  <!--<p><em>El meta-gestor de paquetes ultrarrápido en C++20 para Linux</em></p> -->
+</div>
 
 **Meta-gestor de paquetes universal ultrarrápido**
 
