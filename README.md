@@ -23,10 +23,10 @@
 > *Resuelve dependencias con SAT. Busca en microsegundos. Instala con seguridad.*
 
 ```bash
-gwins12 install curl wget nginx    # Resuelve SAT → instala
-gwins12 search openssl             # Búsqueda instantánea mmap
-gwins12 -g torvalds/linux          # Clona repositorios
-gwins12 bootstrap web-dev          # Entorno completo en segundos
+gw install curl wget nginx    # Resuelve SAT → instala
+gw search openssl             # Búsqueda instantánea mmap
+gw -g torvalds/linux          # Clona repositorios
+gw bootstrap web-dev          # Entorno completo en segundos
 ```
 
 </div>
@@ -173,8 +173,8 @@ make test
 ### Opción 2: Compilación manual
 
 ```bash
-g++ -std=c++20 -O3 -o gwins12 gwins12.cpp -lcurl -lsolv -lsolvext -lpthread
-sudo cp gwins12 /usr/local/bin/
+g++ -std=c++20 -O3 -o gw gwins12.cpp -lcurl -lsolv -lsolvext -lpthread
+sudo cp gw /usr/local/bin/
 ```
 
 ### Opción 3: Instalación en un solo comando (Debian/Ubuntu)
@@ -183,7 +183,7 @@ sudo cp gwins12 /usr/local/bin/
 # Instalar dependencias + compilar + instalar
 sudo apt-get update && \
 sudo apt-get install -y g++ libcurl4-openssl-dev libsolv-dev git make && \
-g++ -std=c++20 -O3 -o gwins12 gwins12.cpp -lcurl -lsolv -lsolvext -lpthread && \
+g++ -std=c++20 -O3 -o gw gwins12.cpp -lcurl -lsolv -lsolvext -lpthread && \
 sudo cp gwins12 /usr/local/bin/
 ```
 
@@ -194,8 +194,8 @@ sudo cp gwins12 /usr/local/bin/
 ### Sintaxis general
 
 ```bash
-gwins12 [FLAGS] <COMANDO> [PAQUETES...]
-gwins12 -g <url|user/repo> [FLAGS]
+gw [FLAGS] <COMANDO> [PAQUETES...]
+gw -g <url|user/repo> [FLAGS]
 ```
 
 ### Comandos principales
@@ -226,58 +226,58 @@ gwins12 -g <url|user/repo> [FLAGS]
 
 ```bash
 # Búsqueda normal (tabla con colores)
-gwins12 search openssl
+gw search openssl
 
 # Búsqueda en modo script (solo nombres, filtrable con grep)
-gwins12 search -q openssl | grep libssl
+gw search -q openssl | grep libssl
 
 # Búsqueda con verbose (muestra tiempos internos)
-gwins12 search -v openssl
+gw search -v openssl
 ```
 
 ### 📦 Ejemplos de instalación
 
 ```bash
 # Resolver e instalar paquetes
-gwins12 install curl wget vim
+gw install curl wget vim
 
 # Ver qué instalaría sin tocar el sistema (dry-run)
-gwins12 install curl wget --pretend
+gw install curl wget --pretend
 
 # Forzar refresco de metadatos antes de instalar
-gwins12 install -n nodejs npm
+gw install -n nodejs npm
 
 # Instalación silenciosa (ideal para scripts)
-gwins12 install -y -q build-essential
+gw install -y -q build-essential
 ```
 
 ### 🔄 Actualizar metadatos
 
 ```bash
 # Actualizar caché nativa (apt-get update, pacman -Sy, etc.) y reconstruir mmap
-gwins12 update
+gw update
 
 # Forzar reconstrucción completa (borra caché y regenera)
-gwins12 update -n
+gw update -n
 ```
 
 ### 🐙 Clonado de repositorios Git
 
 ```bash
 # Shorthand de GitHub
-gwins12 -g torvalds/linux
+gw -g torvalds/linux
 
 # Clonar con rama específica y shallow
-gwins12 -g user/repo -b dev --shallow
+gw -g user/repo -b dev --shallow
 
 # Clonar de GitLab a directorio concreto
-gwins12 -g https://gitlab.com/usuario/proyecto -d ./src
+gw -g https://gitlab.com/usuario/proyecto -d ./src
 
 # Dry-run de clonado (muestra plan sin ejecutar)
-gwins12 -g torvalds/linux --pretend
+gw -g torvalds/linux --pretend
 
 # Auto-confirmar instalación de git si falta
-gwins12 -g user/repo -y
+gw -g user/repo -y
 ```
 
 > 💡 **Fallback inteligente:** Si no tienes `git` instalado, Gwins12 puede:
@@ -288,16 +288,16 @@ gwins12 -g user/repo -y
 
 ```bash
 # Perfiles predefinidos
-gwins12 bootstrap web-dev      # Node.js, npm, git, curl, build-essential
-gwins12 bootstrap python-dev   # Python3, pip, venv, git
-gwins12 bootstrap rust-dev     # curl, build-essential, pkg-config, libssl-dev
-gwins12 bootstrap fullstack    # Node.js, PostgreSQL, Redis, git, curl
+gw bootstrap web-dev      # Node.js, npm, git, curl, build-essential
+gw bootstrap python-dev   # Python3, pip, venv, git
+gw bootstrap rust-dev     # curl, build-essential, pkg-config, libssl-dev
+gw bootstrap fullstack    # Node.js, PostgreSQL, Redis, git, curl
 
 # Ver plan sin instalar
-gwins12 bootstrap web-dev --pretend
+gw bootstrap web-dev --pretend
 
 # Lista personalizada de paquetes
-gwins12 bootstrap vim git htop curl wget
+gw bootstrap vim git htop curl wget
 ```
 
 ---
@@ -417,19 +417,19 @@ Todos los benchmarks se ejecutan en caliente (segunda ejecución, caché ya gene
 
 ```bash
 # Benchmark de carga de caché
-time gwins12 search __nonexistent__ -q
+time gw search __nonexistent__ -q
 # → real  0m0.008s   (8 ms para cargar 84.909 paquetes)
 
 # Benchmark de búsqueda
-time gwins12 search libssl -q | wc -l
+time gw search libssl -q | wc -l
 # → 47 resultados en ~95 ms
 
 # Benchmark de resolución SAT
-time gwins12 install curl --pretend -q
+time gw install curl --pretend -q
 # → 12 paquetes resueltos en ~45 ms
 
 # Benchmark de bootstrap (dry-run)
-time gwins12 bootstrap web-dev --pretend
+time gw bootstrap web-dev --pretend
 # → 47 paquetes resueltos en ~120 ms
 ```
 
