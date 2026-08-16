@@ -437,6 +437,7 @@ Gwins12 es un proyecto educativo. ¡Las contribuciones son bienvenidas!
 - [ ] Tests unitarios automatizados (Catch2 o GoogleTest)
 - [ ] Configuración vía archivo `~/.gwins12/config.toml`
 - [ ] Soporte para múltiples arquitecturas (arm64, i386) en el mismo pool
+- [ ] Hacer todo el proyecto modulado 
 
 ### Cómo contribuir
 
